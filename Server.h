@@ -11,11 +11,13 @@
 #include <string.h>
 #include <sstream>
 #include <unistd.h>
+#include <mutex>
 
 #include "CLI.h"
 
 
 using namespace std;
+
 
 // edit your ClientHandler interface here:
 class ClientHandler{
@@ -27,15 +29,24 @@ class ClientHandler{
 // you can add helper classes here and implement on the cpp file
 class serverIO:public DefaultIO{
     int clientID;
+    //mutex m;
 public:
     serverIO(int id):clientID(id){
 
     }
     virtual string read(){
+        //m.lock();
         char buffer[1024];
-        int n= ::read(clientID,buffer, 1024);
-        buffer[n] = '\0';
+        int i=0;
+        ::read(clientID,buffer, 1);
+        while(buffer[i] != '\n'){
+            i++;
+            ::read(clientID,buffer+i, 1);
+        }
+
+        buffer[i] = '\0';
         string str(buffer);
+        //m.lock();
         return str;
     }
     virtual void write(string text){
@@ -51,10 +62,27 @@ public:
     }
 
     virtual void read(float* f){
+        //m.lock();
+        static int j=0;
+        j++;
+        if(j==3)
+            j=4;
         char buffer[100];
-        int n= ::read(clientID,buffer, sizeof(float));
-        float* temp = (float*)buffer;
-        *f=*temp;
+        int i=0;
+        ::read(clientID,buffer, 1);
+        while(buffer[i] != '\n'){
+            i++;
+            ::read(clientID,buffer+i, 1);
+        }
+
+        buffer[i] = '\0';
+        string str(buffer);
+//        int pos_baclslesh_n = str.find("\n");
+//        string str_cut = str.substr(0, pos_baclslesh_n);
+//        cout<<str_cut<<endl;
+        *f = stof(str);
+        //m.lock();
+        //*f=*temp;
     }
 
     void close(){

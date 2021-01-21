@@ -24,7 +24,7 @@ void Server::start(ClientHandler& ch)throw(const char*){
         int aClient;
         int i=2;
         while(i--){
-            cout<<"as"<<endl;
+
             aClient = accept(fd,(struct sockaddr*)&client,&clientSize);
             if(aClient<0)
                 throw "accept failure";

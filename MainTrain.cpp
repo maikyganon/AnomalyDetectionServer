@@ -81,15 +81,19 @@ void clientSide1(int port,string outputFile)throw (const char*){
 void clientSide2(int port,string outputFile)throw (const char*){
 
 	int serverFD = initClient(port);
-	
+
 	ofstream out(outputFile);
 	ifstream in("input.txt");
 	string input="";
+
 	while(input!="6"){
+
 		readMenue(out,serverFD);
-		getline(in,input);			
+
+		getline(in,input);
 		writeStr(input,serverFD);
 		if(input=="1"){
+
 			out<<readStr(serverFD)<<endl; // please upload...
 			while(input!="done"){
 				getline(in,input);
