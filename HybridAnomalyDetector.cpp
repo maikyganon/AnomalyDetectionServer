@@ -1,10 +1,7 @@
 
 #include "HybridAnomalyDetector.h"
 
-HybridAnomalyDetector::HybridAnomalyDetector() {
-	// TODO Auto-generated constructor stub
-
-}
+HybridAnomalyDetector::HybridAnomalyDetector() {}
 
 float HybridAnomalyDetector::learnHelper(float pearson_value, bool *correlations_flags,int i,int j, float* i_feature, float* j_feature, int feature_size){
     if(pearson_value >= threshold_value){
@@ -60,17 +57,6 @@ void HybridAnomalyDetector::add_Anomalys_2Vector( vector<AnomalyReport>& anomaly
         }
     }
 }
-
-//bool SimpleAnomalyDetector::isAnomaly(correlatedFeatures &c,tuple<float, int> &value_and_ts) {
-//    return get<0>(value_and_ts) > c.threshold;
-//}
-// bool HybridAnomalyDetector::isAnomaly(correlatedFeatures &c,tuple<float, int> &value_and_ts){
-//    if(c.corrlation >= threshold_value){
-//        return get<0>(value_and_ts) > c.threshold;
-//    } else if(c.corrlation > 0.5){
-//
-//    }
-//}
 
 tuple<float, int> HybridAnomalyDetector::calc_biggest_delta_value_and_ts(float* i_feature, float* j_feature, correlatedFeatures& c, int size){
     if(c.corrlation >= threshold_value){
