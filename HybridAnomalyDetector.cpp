@@ -6,14 +6,6 @@ HybridAnomalyDetector::HybridAnomalyDetector() {
 
 }
 
-//Point** features_2_points(float* i_feature, float* j_feature,int size){
-//    Point** features_points = new Point*[size];
-//    for (int i = 0; i < size; ++i) {
-//        features_points[i] = new Point(i_feature[i], j_feature[i]);
-//    }
-//    return features_points;
-//}
-
 float HybridAnomalyDetector::learnHelper(float pearson_value, bool *correlations_flags,int i,int j, float* i_feature, float* j_feature, int feature_size){
     if(pearson_value >= threshold_value){
         correlations_flags[i] = true;
@@ -21,13 +13,6 @@ float HybridAnomalyDetector::learnHelper(float pearson_value, bool *correlations
     } else if(pearson_value > 0.5 ){
         correlations_flags[i] = true;
         return pearson_value ;
-//        correlations_flags[i] = true;
-//        Point* features_points[feature_size];
-//        for (int i = 0; i < feature_size; ++i) {
-//            features_points[i] = new Point(i_feature[i], j_feature[i]);
-//        }
-//        float min_radius = findMinCircle(features_points, feature_size).radius;
-//        return min_radius;
     }
     else
         return -1.0;
