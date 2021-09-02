@@ -16,7 +16,7 @@ This anomaly detection server is build to find anomalies in flight data using pr
 - **HybridAnomalyDetector** - Combining the simple detector with the minimal circle algorithm(minCircle). If the correlation threshold is greater than or equal to the set threshold (e.g. 9.0) then the algorithm will run the simple detector, on the other hand, if there is a feature whose maximum correlation with another feature is greater than 5.0 but smaller than the correlation threshold, so for these two features, we will use the min circle algorithm (we will find the minimum circle and a point will be an anomaly if its position is outside the circle).
 - **CLI** - Command Line Interface.
 - **Command.h** - Commands interface.  
-We are using the design patterns Command and bridge:
+We are using the design patterns Command and Bridge:
 ![CLI UML](https://user-images.githubusercontent.com/16485984/131841573-1511cf70-b790-4294-a656-72429b2214e5.png)
 - **Server** - Multi-threaded server (TCP).
 - **MainTrain** - test's.
