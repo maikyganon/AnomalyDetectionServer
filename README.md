@@ -1,7 +1,5 @@
 # AnomalyDetectionServer
 
-## Abstract: 
-
 This anomaly detection server is build to find anomalies in flight data using pre-recorded data. The server can handle multiple users simultaneously. Once a user is connected to the server he gets access to a CLI -
 
 ![image](https://user-images.githubusercontent.com/16485984/131828883-00c126e3-02e3-4f32-b769-dd5db0099d12.png)
